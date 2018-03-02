@@ -1,0 +1,10 @@
+# Sample localization file for English. Add more files in this directory for other locales.
+# See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+en:
+  historical_stock:
+    title_out_of_stock_report: Out of Stock Report
+    description_out_of_stock_report: Show everytime a product run out of stock by locations.
+    between_dates: Between dates 
+    was_backorderable: Was backorderable?
+    current_stock: Current stock

@@ -1,0 +1,55 @@
+<% content_for :page_title do %>
+  <%= link_to Spree.t(:reports), spree.admin_reports_url %> /
+  <%= I18n.t("historical_stock.title_out_of_stock_report") %>
+<% end %>
+
+<%= form_tag(out_of_stock_report_admin_reports_path, method: :get) do %>
+
+<div class="row">
+  <div class="date-range-filter col-xs-12 col-md-8">
+    <div class="form-group">
+      <%= label_tag :from, I18n.t("historical_stock.between_dates")%>
+      <div class="row no-padding-bottom">
+        <div class="col-xs-12 col-md-6">
+          <div class="input-group">
+            <%= text_field_tag :from, nil, class: 'datepicker datepicker-from form-control', value: nil, placeholder: Spree.t(:start) %>
+          </div>
+
+        </div>
+        <div class="col-xs-12 col-md-6">
+          <div class="input-group">
+            <%= text_field_tag :to, nil, class: 'datepicker datepicker-from form-control', value: nil, placeholder: Spree.t(:end) %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= submit_tag Spree.t(:filter)%>
+<% end %>
+<br/>
+<div class="row">
+  <table class="table table-bordered admin-report" data-hook="out_of_stock_report">
+    <thead>
+      <tr>
+        <th><%=Spree.t(:location)%></th>
+        <th><%=Spree.t(:sku)%></th>
+        <th><%=Spree.t(:date)%></th>
+        <th><%=I18n.t("historical_stock.was_backorderable") %></th>
+        <th><%=I18n.t("historical_stock.current_stock")%></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @out_of_stock_reports.each do |stock_report| %>
+      <tr>
+        <td><%= stock_report.stock_item.stock_location.name %></td>
+        <td><%= stock_report.stock_item.variant.sku %></td>
+        <td><%= stock_report.created_at %></td>
+        <td><%= stock_report.record_backorderable %></td>
+        <td><%= stock_report.stock_item.count_on_hand %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
