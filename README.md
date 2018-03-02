@@ -18,7 +18,7 @@ The report information details:
 
 1. Add this extension to your Gemfile with this line:
   ```ruby
-  gem 'spree_historical_stock', github: '[your-github-handle]/spree_historical_stock'
+  gem 'spree_historical_stock', github: 'https://github.com/mperaltacid/spree_historical_stock.git'
   ```
 
 2. Install the gem using Bundler:
